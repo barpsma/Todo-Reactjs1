@@ -6,17 +6,17 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      title: "Finish Progate React Course",
+      title: "Finish Project NAS DIY",
       completed: false,
     },
     {
       id: 2,
-      title: "Have lunch with Guru Domba",
+      title: "Istirahat dan Makan Siang",
       completed: false,
     },
     {
       id: 3,
-      title: "Study React with Ninja Ken",
+      title: "Finish Course ReactJS Progate",
       completed: false,
     },
   ]);
