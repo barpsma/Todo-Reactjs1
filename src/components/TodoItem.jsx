@@ -1,6 +1,6 @@
 import React from "react";
 
-const TodoItem = ({ todo, toggleCompleted }) => {
+const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
       return { textDecoration: "line-through" };
@@ -17,6 +17,9 @@ const TodoItem = ({ todo, toggleCompleted }) => {
         onChange={() => toggleCompleted(todo.id)}
       />
       <p style={getTodoTitleStyle()}>{todo.title}</p>
+      <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
+        Hapus
+      </button>
     </div>
   );
 };
@@ -35,6 +38,15 @@ const styles = {
     marginRight: "10px",
     height: "18px",
     width: "18px",
+  },
+  button: {
+    backgroundColor: "#BB0000",
+    color: "#fff",
+    borderRadius: "10%",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "20px",
+    marginLeft: "50px",
   },
 };
 
