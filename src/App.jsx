@@ -2,7 +2,9 @@ import "./App.css";
 import Todos from "./components/Todos";
 import TodoForm from "./components/TodoForm";
 
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
+
+export const TodoContext = createContext();
 
 function App() {
   const addTodo = (todoTitle) => {
@@ -56,22 +58,27 @@ function App() {
   console.log(todos);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>My Todo List</h1>
-      <TodoForm addTodo={addTodo} />
-      <Todos
-        todos={todos}
-        toggleCompleted={toggleCompleted}
-        deleteTodo={deleteTodo}
-      />
-    </div>
+    <TodoContext.Provider value={{ toggleCompleted, deleteTodo }}>
+      <div style={styles.container}>
+        <h1 style={styles.title}>Todo List Akbar</h1>
+        <TodoForm addTodo={addTodo} />
+        <Todos todos={todos} />
+      </div>
+    </TodoContext.Provider>
   );
 }
 
 const styles = {
   container: {
+    maxWidth: "600px",
+    margin: "0 auto",
     textAlign: "center",
-    padding: "12px",
+    border: "2px solid grey",
+    borderRadius: "10px",
+    padding: "20px",
+    backgroundColor: "#e8e8e8",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    fontFamily: "Arial, sans-serif",
   },
   title: {
     fontSize: "36px",

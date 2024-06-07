@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
 
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+const TodoItem = ({ todo }) => {
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
       return { textDecoration: "line-through" };
@@ -8,6 +9,7 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
       return { textDecoration: "none" };
     }
   };
+  const { toggleCompleted, deleteTodo } = useContext(TodoContext);
 
   return (
     <div style={styles.todoItem}>
@@ -17,9 +19,11 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
         onChange={() => toggleCompleted(todo.id)}
       />
       <p style={getTodoTitleStyle()}>{todo.title}</p>
-      <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
-        Hapus
-      </button>
+      <div style={styles.buttonGroup}>
+        <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
@@ -27,26 +31,31 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
 const styles = {
   todoItem: {
     border: "2px solid #f4f4f4",
-    fontSize: "24px",
-    // Tambahkan styles di bawah ini
+    fontSize: "15px",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
+    padding: "20px",
   },
-  // Tambahkan styles di bawah ini
   checkbox: {
     marginRight: "10px",
     height: "18px",
     width: "18px",
   },
+  buttonGroup: {
+    display: "flex",
+    gap: "10px",
+    margin: 10,
+  },
   button: {
     backgroundColor: "#BB0000",
     color: "#fff",
-    borderRadius: "10%",
+    borderRadius: "5px",
     border: "none",
     cursor: "pointer",
-    fontSize: "20px",
-    marginLeft: "50px",
+    fontSize: "15px",
+    padding: "10px 20px",
+    fontWeight: "bold",
   },
 };
 
